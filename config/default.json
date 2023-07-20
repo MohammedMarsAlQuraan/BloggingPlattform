@@ -1,0 +1,8 @@
+{
+    "Database": {
+        "User":"sa",
+        "Password":"mars@123",
+        "Server":"localhost",
+        "DBName":"blogging"
+    }
+}

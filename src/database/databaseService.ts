@@ -4,8 +4,8 @@ import { DatabaseConfiguration } from './databaseConfiguration';
 import { SQLResult } from './models/sqlResult';
 import { SqlParameter } from './models/sqlParameter';
 import { Logger } from '../services/logger.service';
-import * as Config from '../../config/authConfig'
 import { CommonMethod } from '../common/CommonMethod';
+const config = require('config');
 
 export class DatabaseService {
     public static dbConnPool: ConnectionPool;
@@ -14,7 +14,11 @@ export class DatabaseService {
     // tslint:disable member-ordering
     public static async start(): Promise<eResult> {
         try {
-            const tDatabaseConfiguration: DatabaseConfiguration = new DatabaseConfiguration("sa", "sedco@123", "localhost", "blogging");
+            const tUser = config.get('Database.User');
+            const tPassword = config.get('Database.Password');
+            const tServer = config.get('Database.Server');
+            const tDBName = config.get('Database.DBName');
+            const tDatabaseConfiguration: DatabaseConfiguration = new DatabaseConfiguration(tUser, tPassword, tServer, tDBName);
             return await this.open(tDatabaseConfiguration);
         } catch (error) {
             Logger.log(error);;

@@ -5,7 +5,6 @@ import UserRoutes from './routes/user';
 import { DatabaseService } from './database/databaseService';
 import { Logger } from './services/logger.service';
 
-
 export class App {
 
   public static async InitializeApp() {
